@@ -1,0 +1,11 @@
+---
+# This is a very mimimal clang-format config file, based on the LLVM style
+#
+# For more options see the clang-format documentation, or try using the 
+# online clang-format generator:
+#     https://zed0.co.uk/clang-format-configurator/
+#
+
+BasedOnStyle: LLVM
+
+...
