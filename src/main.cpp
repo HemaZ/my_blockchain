@@ -15,5 +15,8 @@ int main(int argc, char const *argv[]) {
   my_blockchain.AddBlock(Block(3, "Block 3 Data"));
 
   my_blockchain.JSON();
+
+  std::cout << "Is the Blockchain Valid " << my_blockchain.IsValid()
+            << std::endl;
   return 0;
 }

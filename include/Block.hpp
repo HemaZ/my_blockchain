@@ -21,10 +21,17 @@ public:
    */
   Block(uint64_t index, const std::string &data);
   /**
-   * @brief
+   * @brief Set the Prev Hash object
    *
+   * @param hash
    */
-  std::string PrevHash;
+  void SetPrevHash(const std::string &hash);
+  /**
+   * @brief Get the Prev Hash object
+   *
+   * @return std::string
+   */
+  std::string GetPrevHash() const;
   /**
    * @brief Get the Hash object
    *
@@ -55,14 +62,24 @@ public:
    * @param difficulty
    */
   void MineBlock(uint64_t difficulty);
+  /**
+   * @brief Calculate the block hash.
+   *
+   * @return std::string block's hash.
+   */
+  inline std::string CalculateHash() const {
+    std::stringstream ss;
+    ss << index_ << time_ << data_ << nonce_ << prev_hash_;
+    return sha256(ss.str());
+  }
 
 private:
+  std::string prev_hash_;
   uint64_t index_;
   int64_t nonce_;
   std::string data_;
   std::string hash_;
   time_t time_;
-  inline std::string CalculateHash_() const;
 };
 } // namespace my_blockchain
 #endif // MY_BLOCK_CHAIN__BLOCK_H__
