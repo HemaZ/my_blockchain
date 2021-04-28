@@ -30,6 +30,13 @@ public:
    *
    */
   void JSON() const;
+  /**
+   * @brief Check if the Blockchain is valid or not
+   *
+   * @return true Valid.
+   * @return false Not Valid.
+   */
+  bool IsValid() const;
 
 private:
   uint64_t difficulty_;

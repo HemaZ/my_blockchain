@@ -7,7 +7,7 @@ Blockchain::Blockchain(uint64_t difficulty) : difficulty_(difficulty) {
 }
 
 void Blockchain::AddBlock(Block block) {
-  block.PrevHash = GetLastBlock_().GetHash();
+  block.SetPrevHash(GetLastBlock_().GetHash());
   block.MineBlock(difficulty_);
   chain_.push_back(block);
 }
@@ -24,11 +24,22 @@ void Blockchain::JSON() const {
     auto time = block.GetTime();
     j["block_" + std::to_string(block.GetId())] = {
         {"hash", block.GetHash()},
-        {"previous_hash", block.PrevHash},
+        {"previous_hash", block.GetPrevHash()},
         {"data", block.GetData()},
         {"time", std::ctime(&time)}};
   }
   std::cout << j.dump(4) << std::endl;
 }
 
+bool Blockchain::IsValid() const {
+  for (auto ptr = chain_.begin() + 1; ptr != chain_.end(); ptr++) {
+    auto current_block = *ptr;
+    auto prev_block = *(ptr - 1);
+    if (current_block.GetHash() != current_block.CalculateHash())
+      return false;
+    if (prev_block.GetHash() != current_block.GetPrevHash())
+      return false;
+  }
+  return true;
+}
 } // namespace my_blockchain
