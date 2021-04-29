@@ -12,13 +12,13 @@ public:
    *
    * @param difficulty Mining difficulty.
    */
-  Blockchain(uint64_t difficulty = 6);
+  Blockchain(uint64_t difficulty = 6, double reward = 10);
   /**
    * @brief Add a new block to the blockchain.
    *
    * @param block The new block to be added.
    */
-  void AddBlock(Block block);
+  void AddBlock(const string &reward_address);
   /**
    * @brief Set the Difficulty object
    *
@@ -37,9 +37,12 @@ public:
    * @return false Not Valid.
    */
   bool IsValid() const;
+  void AddTransaction(const Transaction &tr);
 
 private:
   uint64_t difficulty_;
+  std::vector<Transaction> pending_transactions_;
+  double mining_reward_;
   std::vector<Block> chain_;
   Block GetLastBlock_() const;
 };

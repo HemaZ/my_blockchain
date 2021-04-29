@@ -1,7 +1,7 @@
 #include "Block.hpp"
 namespace my_blockchain {
-Block::Block(uint64_t index, const std::string &data)
-    : index_(index), data_(data) {
+Block::Block(const std::vector<Transaction> &transactions)
+    : transactions_(transactions) {
   nonce_ = -1;
   time_ = time(nullptr);
 }
@@ -25,7 +25,10 @@ void Block::MineBlock(uint64_t difficulty) {
   std::cout << "Block Mined: " << hash_ << std::endl;
 }
 
-std::string Block::GetData() const { return data_; }
 time_t Block::GetTime() const { return time_; }
 uint64_t Block::GetId() const { return index_; }
+void Block::SetIndex(uint64_t index) { index_ = index; }
+const std::vector<Transaction> &Block::GeTransactions() const {
+  return transactions_;
+}
 } // namespace my_blockchain

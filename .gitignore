@@ -37,3 +37,4 @@ CMakeSettings.json
 
 # build folder
 build
+.vscode/*
