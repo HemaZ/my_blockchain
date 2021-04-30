@@ -35,14 +35,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
+#include "Blockchain.hpp"
+#include "sha256.hpp"
 #include <limits>
 #include <type_traits>
+using namespace my_blockchain;
 
-#include "sha256.hpp"
-
-// This tests the output of the `get_nth_prime` function
-TEST_CASE("SHA256", "SHA256") {
+TEST_CASE("Hash function is working", "SHA256") {
   std::string sha = sha256("Ibrahim Essam");
   CHECK(sha ==
         "ed8b5577ab0fb98d7af6c4f8ea9d01d7ae3309683ca75d9963b4e0ad6bcbc33a");
+}
+
+TEST_CASE("getting balance", "GetBalance") {
+  Blockchain bc(3, 1);
+  bc.AddTransaction(Transaction("", "test", 6.001));
+  bc.AddBlock("test_wallet");
+  bc.AddTransaction(Transaction("test", "test_wallet", 6.001));
+  bc.AddBlock("test");
+  CHECK(bc.GetBalance("test") == 0);
+  CHECK(bc.GetBalance("test_wallet") == 7.001);
 }
