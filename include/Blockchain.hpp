@@ -37,7 +37,19 @@ public:
    * @return false Not Valid.
    */
   bool IsValid() const;
+  /**
+   * @brief Add new transaction to be processed.
+   *
+   * @param tr Transactino to be addded.
+   */
   void AddTransaction(const Transaction &tr);
+  /**
+   * @brief Get the Balance of this wallet.
+   *
+   * @param address wallet address.
+   * @return double total balance.
+   */
+  double GetBalance(const string &address);
 
 private:
   uint64_t difficulty_;

@@ -59,4 +59,19 @@ bool Blockchain::IsValid() const {
 void Blockchain::AddTransaction(const Transaction &tr) {
   pending_transactions_.push_back(tr);
 }
+
+double Blockchain::GetBalance(const string &address) {
+  double balance = 0.0;
+  for (const auto &block : chain_) {
+    for (const auto &tr : block.GeTransactions()) {
+      if (tr.GetReceiver() == address)
+        balance += tr.GetAmount();
+
+      if (tr.GetSender() == address)
+        balance -= tr.GetAmount();
+    }
+  }
+
+  return balance;
+}
 } // namespace my_blockchain
