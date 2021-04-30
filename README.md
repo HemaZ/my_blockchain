@@ -1,5 +1,9 @@
 # My Blockchain
 
+<p align="center">
+  <img width="200" height="200" src="logo.png">
+</p>
+
 A simple C++ implementation of a Blockchain.
 
 ## How to build
