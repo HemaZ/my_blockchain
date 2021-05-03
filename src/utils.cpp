@@ -18,4 +18,11 @@ MyPublicKey GetPublicKey(const std::string &public_key) {
           .Ref());
   return publicKey;
 }
+
+MyPrivateKey GeneratePrivateKey() {
+  CryptoPP::AutoSeededRandomPool prng;
+  CryptoPP::ECDSA<CryptoPP::ECP, CryptoPP::SHA256>::PrivateKey privateKey;
+  privateKey.Initialize(prng, CryptoPP::ASN1::secp256k1());
+  return privateKey;
+}
 } // namespace my_blockchain

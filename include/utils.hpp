@@ -27,6 +27,7 @@ std::string GetPublicKey(const MyPrivateKey &private_key);
  * @return MyPublicKey
  */
 MyPublicKey GetPublicKey(const std::string &public_key);
+MyPrivateKey GeneratePrivateKey();
 } // namespace my_blockchain
 
 #endif // __MY_BLOCKCHAIN_UTILS_H__

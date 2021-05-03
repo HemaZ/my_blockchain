@@ -15,18 +15,21 @@ TEST_CASE("Hash function is working", "[SHA256]") {
 
 TEST_CASE("getting balance", "[Blockchain]") {
   Blockchain bc(3, 1);
-  bc.AddTransaction(Transaction("", "test", 6.001));
-  bc.AddBlock("test_wallet");
-  bc.AddTransaction(Transaction("test", "test_wallet", 6.001));
-  bc.AddBlock("test");
-  REQUIRE(bc.GetBalance("test") == 0);
-  REQUIRE(bc.GetBalance("test_wallet") == 7.001);
+  MyPrivateKey pk1 = GeneratePrivateKey();
+  MyPrivateKey pk2 = GeneratePrivateKey();
+  std::string puk1 = GetPublicKey(pk1);
+  std::string puk2 = GetPublicKey(pk2);
+  Transaction tr = Transaction(puk1, puk2, 6.00);
+  tr.SignTransaction(pk1);
+  CHECK(bc.AddTransaction(tr));
+  bc.AddBlock(puk1);
+  bc.AddBlock(puk2);
+  REQUIRE(bc.GetBalance(puk1) == -5.00);
+  REQUIRE(bc.GetBalance(puk2) == 6.00);
 }
 
 TEST_CASE("Sign a Transaction With correct Key", "[Transaction]") {
-  CryptoPP::AutoSeededRandomPool prng;
-  ECDSA<ECP, CryptoPP::SHA256>::PrivateKey privateKey;
-  privateKey.Initialize(prng, ASN1::secp256k1());
+  MyPrivateKey privateKey = GeneratePrivateKey();
   std::string public_key = GetPublicKey(privateKey);
   Transaction tr(public_key, "essam", 0.5);
   std::cout << public_key << std::endl;
@@ -34,9 +37,7 @@ TEST_CASE("Sign a Transaction With correct Key", "[Transaction]") {
 }
 
 TEST_CASE("Sign a Transaction With wrong Key", "[Transaction]") {
-  CryptoPP::AutoSeededRandomPool prng;
-  ECDSA<ECP, CryptoPP::SHA256>::PrivateKey privateKey;
-  privateKey.Initialize(prng, ASN1::secp256k1());
+  MyPrivateKey privateKey = GeneratePrivateKey();
   std::string public_key = GetPublicKey(privateKey);
   public_key = "";
   Transaction tr(public_key, "essam", 0.5);
