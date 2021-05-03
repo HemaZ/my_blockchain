@@ -1,3 +1,5 @@
+#ifndef __MY_BLOCKCHAIN_UTILS_H__
+#define __MY_BLOCKCHAIN_UTILS_H__
 #include "cryptopp/cryptlib.h"
 #include "cryptopp/integer.h"
 #include "cryptopp/oids.h"
@@ -26,3 +28,5 @@ std::string GetPublicKey(const MyPrivateKey &private_key);
  */
 MyPublicKey GetPublicKey(const std::string &public_key);
 } // namespace my_blockchain
+
+#endif // __MY_BLOCKCHAIN_UTILS_H__
