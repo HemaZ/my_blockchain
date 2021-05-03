@@ -49,7 +49,7 @@ public:
    *
    * @return string
    */
-  inline string GetHash() {
+  inline string GetHash() const {
     return sha256(sender_ + receiver_ + std::to_string(amount_));
   }
   /**
@@ -66,7 +66,7 @@ public:
    * @return true is signed.
    * @return false not signed.
    */
-  bool IsValid();
+  bool IsValid() const;
 };
 
 } // namespace my_blockchain
