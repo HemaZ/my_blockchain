@@ -8,7 +8,18 @@ A simple C++ implementation of a Blockchain.
 
 ## How to build
 
-  `mkdir build && cd build && cmake .. && make`
+* Crypto++ with CMake support.
+    ```bash
+    git clone https://github.com/weidai11/cryptopp.git
+    cd cryptopp
+
+    wget -O CMakeLists.txt https://raw.githubusercontent.com/noloader/cryptopp-cmake/master/CMakeLists.txt
+
+    wget -O cryptopp-config.cmake https://raw.githubusercontent.com/noloader/cryptopp-cmake/master/cryptopp-config.cmake
+    ```
+* My BLockchain
+  
+    `mkdir build && cd build && cmake .. && make`
 
 ## How to run
 

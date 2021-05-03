@@ -48,15 +48,15 @@ if(MSVC)
 else()
     add_compile_options(-Wall -pedantic)
 endif()
-
-add_library(mylib src/sha256.cpp src/Block.cpp src/Blockchain.cpp)
+find_package(CryptoPP REQUIRED)
+add_library(mylib src/sha256.cpp src/Block.cpp src/Blockchain.cpp src/Transaction.cpp src/utils.cpp)
 target_include_directories(mylib PUBLIC include)
 
 enable_testing()
 
 add_executable(mytest tests/MyTests.cpp)
 target_include_directories(mylib PRIVATE tests)
-target_link_libraries(mytest PRIVATE mylib)
+target_link_libraries(mytest PRIVATE mylib cryptopp-static)
 add_test(test1 mytest)
 
 add_executable(main src/main.cpp)
