@@ -50,13 +50,14 @@ else()
 endif()
 find_package(CryptoPP REQUIRED)
 add_library(mylib src/sha256.cpp src/Block.cpp src/Blockchain.cpp src/Transaction.cpp src/utils.cpp)
+target_link_libraries(mylib PRIVATE cryptopp-static)
 target_include_directories(mylib PUBLIC include)
 
 enable_testing()
 
 add_executable(mytest tests/MyTests.cpp)
 target_include_directories(mylib PRIVATE tests)
-target_link_libraries(mytest PRIVATE mylib cryptopp-static)
+target_link_libraries(mytest PRIVATE mylib)
 add_test(test1 mytest)
 
 add_executable(main src/main.cpp)
