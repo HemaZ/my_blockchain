@@ -56,8 +56,12 @@ bool Blockchain::IsValid() const {
   return true;
 }
 
-void Blockchain::AddTransaction(const Transaction &tr) {
-  pending_transactions_.push_back(tr);
+bool Blockchain::AddTransaction(const Transaction &tr) {
+  if (tr.IsValid()) {
+    pending_transactions_.push_back(tr);
+    return true;
+  }
+  return false;
 }
 
 double Blockchain::GetBalance(const string &address) {

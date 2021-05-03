@@ -1,6 +1,6 @@
 #include "Transaction.hpp"
 namespace my_blockchain {
-bool Transaction::IsValid() {
+bool Transaction::IsValid() const {
   if (sender_ == "")
     return true;
   if (signature_.size() == 0)

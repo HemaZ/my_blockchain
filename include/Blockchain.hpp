@@ -2,6 +2,7 @@
 #define __MY_BLOCKCHAIN_BLOCKCHAIN_H__
 #include "Block.hpp"
 #include "json.hpp"
+#include "utils.hpp"
 #include <vector>
 using json = nlohmann::json;
 namespace my_blockchain {
@@ -41,8 +42,10 @@ public:
    * @brief Add new transaction to be processed.
    *
    * @param tr Transactino to be addded.
+   * @return true Transaction is signed and added.
+   * @return false Transaction not signed and couldn't be added.
    */
-  void AddTransaction(const Transaction &tr);
+  bool AddTransaction(const Transaction &tr);
   /**
    * @brief Get the Balance of this wallet.
    *
