@@ -25,19 +25,19 @@ public:
    *
    * @param hash
    */
-  void SetPrevHash(const std::string &hash);
+  void SetPrevHash(const std::string &hash) { prev_hash_ = hash; }
   /**
    * @brief Get the Prev Hash object
    *
    * @return std::string
    */
-  std::string GetPrevHash() const;
+  std::string GetPrevHash() const { return prev_hash_; };
   /**
    * @brief Get the Hash object
    *
    * @return std::string
    */
-  std::string GetHash() const;
+  std::string GetHash() const { return hash_; };
   /**
    * @brief Get the Data object
    *
@@ -67,15 +67,12 @@ public:
    *
    * @return std::string block's hash.
    */
-  inline std::string CalculateHash() const {
-    std::stringstream ss;
-    ss << index_ << time_ << nonce_ << prev_hash_;
-    for (const auto &transaction : transactions_) {
-      ss << transaction.GetSender() << transaction.GetReceiver()
-         << transaction.GetAmount();
-    }
-    return sha256(ss.str());
-  }
+  std::string CalculateHash() const;
+  /**
+   * @brief Set the Block height.
+   *
+   * @param index
+   */
   void SetIndex(uint64_t index);
 
 private:

@@ -17,12 +17,6 @@ void Blockchain::AddBlock(const string &reward_address) {
   pending_transactions_ = {Transaction("", reward_address, mining_reward_)};
 }
 
-Block Blockchain::GetLastBlock_() const { return chain_.back(); }
-
-void Blockchain::SetDifficulty(uint64_t difficulty) {
-  difficulty_ = difficulty;
-}
-
 void Blockchain::JSON() const {
   json j;
   for (const auto block : chain_) {

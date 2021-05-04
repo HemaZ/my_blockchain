@@ -5,11 +5,16 @@ Block::Block(const std::vector<Transaction> &transactions)
   nonce_ = -1;
   time_ = time(nullptr);
 }
-std::string Block::GetHash() const { return hash_; }
 
-std::string Block::GetPrevHash() const { return prev_hash_; }
-
-void Block::SetPrevHash(const std::string &hash) { prev_hash_ = hash; }
+std::string Block::CalculateHash() const {
+  std::stringstream ss;
+  ss << index_ << time_ << nonce_ << prev_hash_;
+  for (const auto &transaction : transactions_) {
+    ss << transaction.GetSender() << transaction.GetReceiver()
+       << transaction.GetAmount();
+  }
+  return sha256(ss.str());
+}
 
 void Block::MineBlock(uint64_t difficulty) {
 

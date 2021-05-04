@@ -25,7 +25,7 @@ public:
    *
 //    * @param difficulty New mining difficulty.
    */
-  void SetDifficulty(uint64_t difficulty);
+  void SetDifficulty(uint64_t difficulty) { difficulty_ = difficulty; }
   /**
    * @brief Jsonify the block chain and print it to the cout.
    *
@@ -59,7 +59,7 @@ private:
   std::vector<Transaction> pending_transactions_;
   double mining_reward_;
   std::vector<Block> chain_;
-  Block GetLastBlock_() const;
+  Block GetLastBlock_() const { return chain_.back(); }
 };
 } // namespace my_blockchain
 
