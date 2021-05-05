@@ -4,7 +4,18 @@
   <img width="200" height="200" src="logo.png">
 </p>
 
-A simple C++ implementation of a Blockchain.
+A simple C++ implementation of a Blockchain. Using mining as a proof of work.
+
+## What it can do?
+
+  - [x] Generate Private and Public (wallet address) keys.
+  - [x] Create Transcations and sign them with your private key.
+  - [x] Add the Transcations to the BlockChain.
+  - [x] Mine for a new block and receive a mining reward.
+  - [x] Get the balance of a certain wallet address.
+  - [x] Validate the Blockchain. 
+  - [x] Export the Blockchain in JSON format.
+  - [ ] Anything else.
 
 ## How to build
 
@@ -12,10 +23,9 @@ A simple C++ implementation of a Blockchain.
     ```bash
     git clone https://github.com/weidai11/cryptopp.git
     cd cryptopp
-
     wget -O CMakeLists.txt https://raw.githubusercontent.com/noloader/cryptopp-cmake/master/CMakeLists.txt
-
     wget -O cryptopp-config.cmake https://raw.githubusercontent.com/noloader/cryptopp-cmake/master/cryptopp-config.cmake
+    `mkdir build && cd build && cmake .. && sudo make install`
     ```
 * My BLockchain
   
@@ -30,7 +40,6 @@ A simple C++ implementation of a Blockchain.
 ```c++
 #include "Blockchain.hpp"
 using namespace my_blockchain;
-
 int main(int argc, char const *argv[]) {
  Blockchain my_blockchain(4, 100); // (Mining difficulty, Reward)
   // Generate new Private and Public keys.
