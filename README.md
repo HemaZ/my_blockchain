@@ -12,6 +12,7 @@ A simple C++ implementation of a Blockchain. Using mining as a proof of work.
   - [x] Create Transcations and sign them with your private key.
   - [x] Add the Transcations to the BlockChain.
   - [x] Mine for a new block and receive a mining reward.
+  - [x] Change mining difficulty. 
   - [x] Get the balance of a certain wallet address.
   - [x] Validate the Blockchain. 
   - [x] Export the Blockchain in JSON format.
