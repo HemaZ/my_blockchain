@@ -58,3 +58,5 @@ int main(int argc, char const *argv[]) {
   my_blockchain.JSON();
 }
 ```
+## References 
+[1] https://github.com/Savjee/SavjeeCoin
